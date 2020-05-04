@@ -10,29 +10,37 @@ import { ApiService } from './core/shared/services/api/api.service';
 import { BlockComponent } from './admin/block/block.component';
 import { DataComponent } from './admin/data/data.component';
 import { appRoutingModule } from './app.routing';
-import { InitComponent } from './public/init/init.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
+import { fakeBackendProvider } from './core/helpers';
+import { BasicAuthInterceptor, ErrorInterceptor } from './core/helpers';
+import { InitComponent } from './public/init';
+import { LoginComponent } from './public/login';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    BlockComponent,
-    DataComponent,
-    InitComponent,
-
-  ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     appRoutingModule,
     HttpClientModule,
     FontAwesomeModule,
-    
+
+  ],
+  declarations: [
+    AppComponent,
+    BlockComponent,
+    DataComponent,
+    InitComponent,
+    LoginComponent
+
   ],
   providers: [
-    BotService, 
+    BotService,
     ApiService,
+    { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+
+    // provider used to create fake backend
+    fakeBackendProvider
   ],
   bootstrap: [AppComponent]
 })

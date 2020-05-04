@@ -4,18 +4,29 @@
         Bot Configuration.
     </a>
 
+    <ul class="nav justify-content-end" *ngIf="currentUser">
 
-    <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="config" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            <fa-icon [icon]="faCog"></fa-icon>
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" [routerLink]="['/block']">
-                Bloqueo de numeros
-            </a>
-        </div>
-    </div>
+        <li class="nav-item">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="config" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <fa-icon [icon]="faCog"></fa-icon>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" [routerLink]="['/block']">
+                        Bloqueo de numeros
+                    </a>
+                </div>
+            </div>
+        </li>
+        <li class="ml-2 nav-item">
+            <a class="btn btn-dark text-light" (click)="logout()">Logout</a>
+        </li>
+
+    </ul>
+
+
+
 
 
 </nav>
