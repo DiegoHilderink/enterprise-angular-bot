@@ -1,0 +1,84 @@
+<div id="block" class="row mt-3">
+
+    <div class=" col-lg-3">
+        <ul class="list-group">
+            <li class="list-group-item">
+                <button class="btn btn-dark" (click)="addNumber()" id="get-data">Añadir</button>
+            </li>
+            <li class="list-group-item" id="list-blocked-group">
+                <button class="btn btn-dark" (click)="showBlocked()">Mostrar bloqueados</button>
+                <button class="btn btn-primary ml-2" id="num-hide"
+                    (click)="hide('#output-group','#num-hide')">X</button>
+            </li>
+            <li class="list-group-item" id="list-err-group">
+                <button class="btn btn-dark" (click)="showErrors()">Mostrar errores</button>
+                <button class="btn btn-primary ml-2" id="err-hide" (click)="hide('#error-group','#err-hide')">X</button>
+            </li>
+            <li class="list-group-item">
+                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModalCenter"
+                    (click)="load()">
+                    Enviar
+                </button>
+            </li>
+
+        </ul>
+    </div>
+
+    <div class="col-lg-3">
+        <div>
+            <div class="form-group" id="add-block">
+                <label for="num-block">Añadir número</label>
+                <input type="text" class="form-control" id="num-block">
+                <small id="num-block-info" class="form-text text-muted">El número que añada aquí, será
+                    automaticamente
+                    bloqueado, por lo que no podrá recibir mensajes de este usuario.
+                </small>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div id='output-group'>
+            <label for="output">Números bloqueados.</label>
+            <select multiple class="form-control" id="output">
+            </select>
+        </div>
+
+        <div id='error-group'>
+            <label for="output">Errores</label>
+            <select multiple class="form-control" id="errors">
+            </select>
+        </div>
+
+        <div id="alert-group">
+            <label for="alerts">Alertas:</label>
+            <div id="alerts"></div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Comfirmar cambios.</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p> Estos números van a ser bloqueados. ¿Esta usted seguro? </p>
+                    <div>
+                        <ul id="load"></ul>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"
+                        (click)="clean()">Cancelar</button>
+                    <button type="button" class="btn btn-warning" data-dismiss="modal" (click)="send()">Guardar
+                        cambios</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

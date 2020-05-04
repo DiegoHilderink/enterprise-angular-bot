@@ -1,0 +1,23 @@
+<nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="#">
+        <img src="favicon.ico" width="30" height="30" class="d-inline-block align-top" alt="">
+        Bot Configuration.
+    </a>
+
+
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="config" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <fa-icon [icon]="faCog"></fa-icon>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" [routerLink]="['/block']">
+                Bloqueo de numeros
+            </a>
+        </div>
+    </div>
+
+
+</nav>
+
+<router-outlet></router-outlet>
