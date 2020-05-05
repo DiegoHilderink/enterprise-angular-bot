@@ -1,0 +1,32 @@
+<div class="container">
+    <button class="btn btn-dark mt-2 mb-2" type="button" data-toggle="collapse" data-target="#collapseSearch" aria-expanded="false" aria-controls="collapseSearch">
+        Button with data-target
+    </button>
+    
+    <div class="collapse mb-2" id="collapseSearch">
+      <div class="card card-body">
+        <form [formGroup]="profileForm" class="row" (ngSubmit)="onSubmit()">
+            <div class="form-group col-10 mb-0">
+              <input type="text" class="form-control " name="user" formControlName="user" id="user-input" aria-describedby="user-input-help" placeholder="Enter data">
+            </div>
+            
+            <button type="submit" [disabled]="!profileForm.valid" class="btn btn-dark col-1 ">Submit</button>
+          </form>
+      </div>
+    </div>
+
+    <div>
+
+        <table class="table">
+            <thead>
+                <th scope="col">#</th>
+                <th scope="col">Full Name</th>
+                <th scope="col">PhoneNumber</th>
+                <th scope="col">Location</th>
+            </thead>
+            <tbody id="user-table">
+
+            </tbody>
+        </table>
+    </div>
+</div>

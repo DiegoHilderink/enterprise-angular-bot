@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { BotService } from '../../core/shared/services/bot/bot.service';
-import { CountryService } from '../../core/shared/services/country/country.service';
 import { ConfErrors } from '../../core/models/conf-error';
 declare var $: any;
 
@@ -15,7 +14,7 @@ export class BlockComponent implements OnInit {
   errors = [];
   num;
 
-  constructor(private bot: BotService, private country: CountryService) { }
+  constructor(private bot: BotService) { }
 
   ngOnInit(): void {
     this.setBloqueados();

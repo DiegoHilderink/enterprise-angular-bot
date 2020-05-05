@@ -5,8 +5,10 @@
     </a>
 
     <ul class="nav justify-content-end" *ngIf="currentUser">
-
         <li class="nav-item">
+            <a [routerLink]="['/chat']" class="btn btn-dark">Chat Soporte.</a>
+        </li>
+        <li class="nav-item ml-2">
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="config" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
@@ -14,7 +16,10 @@
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" [routerLink]="['/block']">
-                        Bloqueo de numeros
+                        Bloqueo de numeros.
+                    </a>
+                    <a class="dropdown-item" [routerLink]="['/user']">
+                        Registro de usuarios.
                     </a>
                 </div>
             </div>
@@ -22,7 +27,6 @@
         <li class="ml-2 nav-item">
             <a class="btn btn-dark text-light" (click)="logout()">Logout</a>
         </li>
-
     </ul>
 
 

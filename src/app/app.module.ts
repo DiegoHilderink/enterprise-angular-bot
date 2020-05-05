@@ -15,6 +15,8 @@ import { fakeBackendProvider } from './core/helpers';
 import { BasicAuthInterceptor, ErrorInterceptor } from './core/helpers';
 import { InitComponent } from './public/init';
 import { LoginComponent } from './public/login';
+import { ChatComponent } from './public/chat/chat.component';
+import { UserComponent } from './admin/user/user.component';
 
 @NgModule({
   imports: [
@@ -30,7 +32,9 @@ import { LoginComponent } from './public/login';
     BlockComponent,
     DataComponent,
     InitComponent,
-    LoginComponent
+    LoginComponent,
+    ChatComponent,
+    UserComponent
 
   ],
   providers: [
