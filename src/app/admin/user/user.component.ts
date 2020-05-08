@@ -38,24 +38,41 @@ export class UserComponent implements OnInit {
           <td>${k['name']}</td>
           <td>${k['number']}</td>
           <td>${k['country']}</td>
+          <td><button class="btn btn-danger" id="user-${k['id']}">x</button></td>
         </tr>
         `)
+
+      $('#user-' + k['id']).click(() => {
+        this.deleteLine(k['id']);
+      })
     });
   }
 
-  findUser(data) {
+  deleteLine(id) {
+    var user = this.findUser(id, 'delete')
+    user['function'] = 'delete';
+    delete this.users[this.users.indexOf(user)]
+    this.genList(this.users)
+  }
+
+  findUser(data, method = null) {
     this.last = [];
+    var user;
     this.users.forEach(k => {
-        if(
-          k['id'] === parseInt(data) || 
-          k['name'].includes(data) || 
-          k['number'] === parseInt(data) ||
-          k['country'] === data
-        ) {
-          
-          this.last.push(k);
-        }
+      if (
+        k['id'] === parseInt(data) ||
+        k['name'].includes(data) ||
+        k['number'] === parseInt(data) ||
+        k['country'] === data
+      ) {
+
+        method !== null ? user = k : this.last.push(k)
+      }
     });
+
+    if (method != null) {
+      return user;
+    }
 
     this.genList(this.last);
   }

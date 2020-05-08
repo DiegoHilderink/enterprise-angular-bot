@@ -1,6 +1,6 @@
 <div class="container">
     <button class="btn btn-dark mt-2 mb-2" type="button" data-toggle="collapse" data-target="#collapseSearch" aria-expanded="false" aria-controls="collapseSearch">
-        Button with data-target
+        Search
     </button>
     
     <div class="collapse  mb-2" id="collapseSearch">
@@ -10,7 +10,7 @@
               <input type="text" class="form-control " name="user" formControlName="user" id="user-input" aria-describedby="user-input-help" placeholder="Enter data">
             </div>
             
-            <button type="submit" [disabled]="!profileForm.valid" class="btn btn-dark col-1 ">Submit</button>
+            <button type="submit" [disabled]="!profileForm.valid" class="btn btn-dark col-1 ">-></button>
           </form>
       </div>
     </div>
@@ -23,6 +23,7 @@
                 <th scope="col">Full Name</th>
                 <th scope="col">PhoneNumber</th>
                 <th scope="col">Location</th>
+                <th scope="col">Action</th>
             </thead>
             <tbody id="user-table">
 
