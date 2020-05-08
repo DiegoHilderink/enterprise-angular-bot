@@ -4,11 +4,11 @@
         Bot Configuration.
     </a>
 
-    <ul class="nav justify-content-end" *ngIf="currentUser">
+    <ul class="nav justify-content-end">
         <li class="nav-item">
             <a [routerLink]="['/chat']" class="btn btn-dark">Chat Soporte.</a>
         </li>
-        <li class="nav-item ml-2">
+        <li class="nav-item ml-2" *ngIf="currentUser">
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="config" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
@@ -24,7 +24,10 @@
                 </div>
             </div>
         </li>
-        <li class="ml-2 nav-item">
+        <li class="ml-2 nav-item" *ngIf="!currentUser">
+            <a [routerLink]="['/login']" class="btn btn-dark">Login</a>
+        </li>
+        <li class="ml-2 nav-item" *ngIf="currentUser">
             <a class="btn btn-dark text-light" (click)="logout()">Logout</a>
         </li>
     </ul>
