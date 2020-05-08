@@ -10,10 +10,10 @@ import { ChatComponent } from './public/chat/chat.component';
 
 export const appRoutingModule = RouterModule.forRoot([
     { path: '', component: InitComponent , canActivate: [AuthGuard]},
-    { path: 'login', component: LoginComponent },
-    { path: 'block', component: BlockComponent },
-    { path: 'user', component: UserComponent },
-    { path: 'chat', component: ChatComponent },
+    { path: 'login', component: LoginComponent},
+    { path: 'block', component: BlockComponent,  canActivate: [AuthGuard]},
+    { path: 'user', component: UserComponent,  canActivate: [AuthGuard]},
+    { path: 'chat', component: ChatComponent},
 
     { path: '**', redirectTo: '' },
 ]);
