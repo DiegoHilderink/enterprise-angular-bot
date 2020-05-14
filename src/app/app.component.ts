@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
 
-import { AuthenticationService } from './core/shared/services/login';
-import { User } from './core/models';
+import { AuthService } from './_services';
+import { User, Role } from './_models';
 
 @Component({
   selector: 'app-root',
@@ -13,18 +13,29 @@ import { User } from './core/models';
 export class AppComponent {
   title = 'rentel-bot';
   faCog = faCog;
-
   currentUser: User;
 
-    constructor(
-        private router: Router,
-        private authenticationService: AuthenticationService
-    ) {
-        this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
-    }
+  constructor(
+    private router: Router,
+    private authenticationService: AuthService
+  ) {
+    this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+  }
 
-    logout() {
-        this.authenticationService.logout();
-        this.router.navigate(['/login']);
-    }
+  get isAdmin() {
+    return this.currentUser && this.currentUser.role === Role.Admin;
+  }
+
+  get isEmpresa() {
+    return this.currentUser && this.currentUser.role === Role.Empresa;
+  }
+  
+  get isEmpleado() {
+    return this.currentUser && this.currentUser.role === Role.Empleado;
+  }
+
+  logout() {
+    this.authenticationService.logout();
+    this.router.navigate(['/login']);
+  }
 }

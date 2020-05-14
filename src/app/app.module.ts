@@ -4,45 +4,35 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
+// used to create fake backend
+import { fakeBackendProvider } from './_helpers';
+
 import { AppComponent } from './app.component';
-import { BotService } from './core/shared/services/bot/bot.service';
-import { ApiService } from './core/shared/services/api/api.service';
-import { BlockComponent } from './admin/block/block.component';
-import { DataComponent } from './admin/data/data.component';
 import { appRoutingModule } from './app.routing';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { fakeBackendProvider } from './core/helpers';
-import { BasicAuthInterceptor, ErrorInterceptor } from './core/helpers';
-import { InitComponent } from './public/init';
-import { LoginComponent } from './public/login';
-import { ChatComponent } from './public/chat/chat.component';
-import { UserComponent } from './admin/user/user.component';
-import { ViewUserComponent } from './admin/view-user/view-user.component';
+
+import { JwtInterceptor, ErrorInterceptor } from './_helpers';
+import { HomeComponent } from './home';
+import { AdminComponent } from './admin';
+import { LoginComponent } from './login';
 
 @NgModule({
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    appRoutingModule,
     HttpClientModule,
-    FontAwesomeModule,
+    appRoutingModule,
+    FontAwesomeModule
 
   ],
   declarations: [
     AppComponent,
-    BlockComponent,
-    DataComponent,
-    InitComponent,
-    LoginComponent,
-    ChatComponent,
-    UserComponent,
-    ViewUserComponent
-
+    HomeComponent,
+    AdminComponent,
+    LoginComponent
   ],
   providers: [
-    BotService,
-    ApiService,
-    { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 
     // provider used to create fake backend

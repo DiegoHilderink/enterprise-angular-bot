@@ -14,12 +14,39 @@
                     aria-haspopup="true" aria-expanded="false">
                     <fa-icon [icon]="faCog"></fa-icon>
                 </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" [routerLink]="['/block']">
-                        Bloqueo de numeros.
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" *ngIf="isAdmin">
+                    <a class="dropdown-item">
+                        Configuraciones y gestiones del bot.
                     </a>
-                    <a class="dropdown-item" [routerLink]="['/user']">
-                        Registro de usuarios.
+                    <a class="dropdown-item">
+                        Gestión de entidades.
+                    </a>
+                    <a class="dropdown-item">
+                        Estado del sistema.
+                    </a>
+                </div>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" *ngIf="isEmpresa">
+                    <a class="dropdown-item">
+                        Configuraciones.
+                    </a>
+                    <a class="dropdown-item">
+                        Gestión de empleados.
+                    </a>
+                    <a class="dropdown-item">
+                        Estado del sistema.
+                    </a>
+                </div>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" *ngIf="isEmpleado">
+                    <a class="dropdown-item">
+                        Configuraciones.
+                    </a>
+                    <a class="dropdown-item">
+                        Gestión de usuarios.
+                    </a>
+                    <a class="dropdown-item">
+                        Estado del sistema.
                     </a>
                 </div>
             </div>
@@ -31,10 +58,8 @@
             <a class="btn btn-dark text-light" (click)="logout()">Logout</a>
         </li>
     </ul>
-
-
-
-
-
 </nav>
-<router-outlet></router-outlet>
+<!-- main app container -->
+<div class="container">
+    <router-outlet></router-outlet>
+</div>

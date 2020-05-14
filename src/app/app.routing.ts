@@ -1,19 +1,30 @@
-﻿import { RouterModule } from '@angular/router';
+﻿import { Routes, RouterModule } from '@angular/router';
 
-import { BlockComponent } from './admin/block/block.component';
-import { UserComponent } from './admin/user/user.component';
-import { InitComponent } from './public/init/init.component';
-import { AuthGuard } from './core/helpers';
-import { LoginComponent } from './public/login';
-import { ChatComponent } from './public/chat/chat.component';
+import { HomeComponent } from './home';
+import { AdminComponent } from './admin';
+import { LoginComponent } from './login';
+import { AuthGuard } from './_helpers';
+import { Role } from './_models';
 
+const routes: Routes = [
+    {
+        path: '',
+        component: HomeComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: 'admin',
+        component: AdminComponent,
+        canActivate: [AuthGuard],
+        data: { roles: [Role.Admin] }
+    },
+    {
+        path: 'login',
+        component: LoginComponent
+    },
 
-export const appRoutingModule = RouterModule.forRoot([
-    { path: '', component: InitComponent , canActivate: [AuthGuard]},
-    { path: 'login', component: LoginComponent},
-    { path: 'block', component: BlockComponent,  canActivate: [AuthGuard]},
-    { path: 'user', component: UserComponent,  canActivate: [AuthGuard]},
-    { path: 'chat', component: ChatComponent},
+    // otherwise redirect to home
+    { path: '**', redirectTo: '' }
+];
 
-    { path: '**', redirectTo: '' },
-]);
+export const appRoutingModule = RouterModule.forRoot(routes);
