@@ -8,7 +8,7 @@ import { User, Role } from '../_models';
 const users: User[] = [
     { id: 1, username: 'admin', password: 'admin', firstName: 'Admin', lastName: 'User', role: Role.Admin },
     { id: 2, username: 'rentel', password: 'rentel', firstName: 'Rentel-wifi', lastName: 'User', role: Role.Empresa },
-    { id: 3, username: 'diego', password: 'diego', firstName: 'Diego', lastName: 'Hilderink', role: Role.Empleado },
+    { id: 3, username: 'empleado', password: 'empleado', firstName: 'Diego', lastName: 'Hilderink', role: Role.Empleado },
     { id: 4, username: 'user', password: 'user', firstName: 'Normal', lastName: 'User', role: Role.User }
 ];
 
