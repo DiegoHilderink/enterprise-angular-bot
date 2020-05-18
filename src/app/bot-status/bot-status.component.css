@@ -1,0 +1,8 @@
+.console {
+  background-color: black;
+  color: white;
+  font: 12px Inconsolata, monospace;
+  width: 800px;
+  height: 400px;
+  overflow: auto;
+}

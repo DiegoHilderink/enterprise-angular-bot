@@ -101,7 +101,7 @@
     ],
     "status" :{
         "status": true,
-        "log" : ["up", "fix", "off", "err", "up"]
+        "log" : ["up", "fix", "off", "err", "up", "fix", "off", "err", "up", "fix", "off", "err", "up"]
     },
     "blocked": [
         699766721

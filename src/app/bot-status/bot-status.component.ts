@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
 import { BotService } from "../_services";
+import { faSync } from '@fortawesome/free-solid-svg-icons';
 
+//standard messages errors
 const msg = {
-  'off' : 'The server is right now off. No error Found.',
-  'up' : 'The server is right now online. No error Found.',
+  'off': 'The server is right now off. No error Found.',
+  'up': 'The server is right now online. No error Found.',
   'err': 'The server is right now off. An error has ocurred.',
-  'fix': 'The server is in maintenance',
+  'fix': 'The server is in maintenance.',
 }
 
 @Component({
@@ -13,15 +15,30 @@ const msg = {
   templateUrl: './bot-status.component.html',
   styleUrls: ['./bot-status.component.css']
 })
-export class BotStatusComponent implements OnInit {
+export class BotStatusComponent implements OnInit, OnChanges {
   status;
-  log;
+  log = [];
+  faSync = faSync;
 
   constructor(private bot: BotService) { }
 
   ngOnInit(): void {
     this.setStatus(this.bot.getStatus())
     this.setLog(this.bot.getLog());
+    console.log(this.log)
+  }
+
+  /**
+   * Execute in case status changes
+   */
+  ngOnChanges(changes: SimpleChanges) {
+
+  }
+
+  //Reload and reset status attribute.
+  reload() {
+    // this.setStatus(this.bot.getStatus())
+    window.location.reload();
   }
 
   setStatus(status) {
@@ -29,10 +46,12 @@ export class BotStatusComponent implements OnInit {
   }
 
   setLog(log) {
-    this.log = log;
+    log.forEach(k => {
+      this.log.push({k: msg[k]}) 
+    });
   }
 
-  getStatus(){
+  getStatus() {
     return this.status;
   }
 }
