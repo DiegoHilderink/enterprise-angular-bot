@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { faCog } from '@fortawesome/free-solid-svg-icons';
+import { faCog, faBullseye } from '@fortawesome/free-solid-svg-icons';
 
-import { AuthService } from './_services';
+import { AuthService, BotService } from './_services';
 import { User, Role } from './_models';
 
 @Component({
@@ -13,11 +13,14 @@ import { User, Role } from './_models';
 export class AppComponent {
   title = 'rentel-bot';
   faCog = faCog;
+  faBullseye = faBullseye;
   currentUser: User;
+  status : boolean;
 
   constructor(
     private router: Router,
-    private authenticationService: AuthService
+    private authenticationService: AuthService,
+    private bot: BotService
   ) {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
   }
@@ -32,6 +35,15 @@ export class AppComponent {
   
   get isEmpleado() {
     return this.currentUser && this.currentUser.role === Role.Empleado;
+  }
+
+  setStatus(status){
+    this.status = status;
+  }
+
+  getStatus() {
+    this.setStatus(this.bot.getStatus());
+    return this.status;
   }
 
   logout() {
