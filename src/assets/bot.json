@@ -99,7 +99,10 @@
             "file": "github.png"
         }
     ],
-    "status" : true,
+    "status" :{
+        "status": true,
+        "log" : ["up", "fix", "off", "err", "up"]
+    },
     "blocked": [
         699766721
     ],

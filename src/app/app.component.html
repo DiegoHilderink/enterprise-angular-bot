@@ -5,9 +5,13 @@
     </a>
 
     <ul class="nav justify-content-end">
-        <li class="nav-item">
+        <li class="ml-2 nav-item" *ngIf="!currentUser">
             <a class="btn btn-light"><fa-icon [icon]="faBullseye" class="text-success" (click)="getStatus()" [ngClass]="status ? 'text-success ': 'text-danger'"></fa-icon></a>
         </li>
+        <li class="ml-2 nav-item" *ngIf="currentUser">
+            <a  class="btn btn-light"><fa-icon [routerLink]="['/bot-status']" [icon]="faBullseye" class="text-success" (click)="getStatus()" [ngClass]="status ? 'text-success ': 'text-danger'"></fa-icon></a>
+        </li>
+
         <li class="nav-item ml-2">
             <a [routerLink]="['/chat']" class="btn btn-dark">Chat Soporte.</a>
         </li>

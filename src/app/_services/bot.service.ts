@@ -9,14 +9,16 @@ export class BotService {
     blocked;
     conf;
     users;
-    status;
+    status : boolean;
+    log;
     prob = 5;
 
     constructor() {
         this.blocked = bot['blocked'];
         this.conf = bot['bot'];
         this.users = bot['users'];
-        this.status = bot['status'];
+        this.status = bot['status']['status'];
+        this.log = bot['status']['log'];
     }
 
     getBlocked() {
@@ -29,6 +31,10 @@ export class BotService {
 
     addNumber(number) {
         this.blocked.push(number);
+    }
+
+    getLog(){
+        return this.log;
     }
 
     getStatus() {

@@ -15,7 +15,7 @@ import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { HomeComponent } from './home';
 import { AdminComponent } from './admin';
 import { LoginComponent } from './login';
-import { BotStatusComponent } from './bot-status/bot-status/bot-status.component';
+import { BotStatusComponent } from './bot-status/bot-status.component';
 import { BotService } from './_services';
 
 @NgModule({
