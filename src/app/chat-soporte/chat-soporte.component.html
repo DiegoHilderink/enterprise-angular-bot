@@ -1,1 +1,28 @@
-<p>chat-soporte works!</p>
+<div class="container">
+    <h3>Chat de Soporte.</h3>
+    <p class="text-dark">Bienvenido al chat de soporte donde atenderemos todas sus
+        consultas.
+    </p>
+    <div class="container">
+
+        <div class="form-group chat">
+            <ul class="list-group">
+                <li class="list-group-item" *ngFor="let k of chat"><strong>{{k.user}}</strong> : {{k.msg}}</li>
+            </ul>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-11">
+                <input type="text" #sender id="sender" class="form-control">
+            </div>
+            <button class="col-sm-1 btn btn-success" (click)="sendMsg(sender.value)">
+                <fa-icon [icon]="faAngleRight"></fa-icon>
+            </button>
+        </div>
+
+    </div>
+
+    <p class="text-dark font-italic">En caso de que sus consultas no fueran satisfactorias, por favor envíe un correo a
+        XXXXXX@YYY.com</p>
+    <p class="text-dark font-italic">Esto es un bosqueje.</p>
+</div>
