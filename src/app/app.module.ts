@@ -17,6 +17,7 @@ import { AdminComponent } from './admin';
 import { LoginComponent } from './login';
 import { BotStatusComponent } from './bot-status/bot-status.component';
 import { BotService } from './_services';
+import { ChatSoporteComponent } from './chat-soporte/chat-soporte.component';
 
 @NgModule({
   imports: [
@@ -32,7 +33,8 @@ import { BotService } from './_services';
     HomeComponent,
     AdminComponent,
     LoginComponent,
-    BotStatusComponent
+    BotStatusComponent,
+    ChatSoporteComponent
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

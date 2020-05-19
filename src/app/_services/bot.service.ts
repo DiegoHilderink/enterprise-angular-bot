@@ -50,7 +50,5 @@ export class BotService {
             this.status = !this.status;
             this.prob = 5;
         };
-
-        console.log(this.status);
     }
 }

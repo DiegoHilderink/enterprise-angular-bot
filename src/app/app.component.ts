@@ -15,7 +15,6 @@ export class AppComponent {
   faCog = faCog;
   faBullseye = faBullseye;
   currentUser: User;
-  status : boolean;
 
   constructor(
     private router: Router,
@@ -36,14 +35,9 @@ export class AppComponent {
   get isEmpleado() {
     return this.currentUser && this.currentUser.role === Role.Empleado;
   }
-
-  setStatus(status){
-    this.status = status;
-  }
-
+  
   getStatus() {
-    this.setStatus(this.bot.getStatus());
-    return this.status;
+    return this.bot.getStatus()
   }
 
   logout() {

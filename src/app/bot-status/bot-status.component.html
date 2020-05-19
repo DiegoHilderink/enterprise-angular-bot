@@ -1,7 +1,7 @@
 <div class="container">
     <h3>Bot status.</h3>
     <div>
-        <p>Status: <strong class="text-success" [ngClass]="status ? 'text-success ': 'text-danger'">{{getStatus()}}</strong><button class="ml-2 btn"><fa-icon (click)="reload()" [icon]="faSync"></fa-icon></button></p>
+        <p>Status: <strong class="text-success" [ngClass]="getStatus() ? 'text-success ': 'text-danger'">{{getStatus()}}</strong><button class="ml-2 btn"><fa-icon (click)="reload()" [icon]="faSync"></fa-icon></button></p>
     </div>
 
     <div class="console container overflow-auto p-2" >

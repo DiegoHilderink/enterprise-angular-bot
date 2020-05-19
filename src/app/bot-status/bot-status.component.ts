@@ -16,14 +16,12 @@ const msg = {
   styleUrls: ['./bot-status.component.css']
 })
 export class BotStatusComponent implements OnInit, OnChanges {
-  status;
   log = [];
   faSync = faSync;
 
   constructor(private bot: BotService) { }
 
   ngOnInit(): void {
-    this.setStatus(this.bot.getStatus())
     this.setLog(this.bot.getLog());
     console.log(this.log)
   }
@@ -37,12 +35,7 @@ export class BotStatusComponent implements OnInit, OnChanges {
 
   //Reload and reset status attribute.
   reload() {
-    // this.setStatus(this.bot.getStatus())
     window.location.reload();
-  }
-
-  setStatus(status) {
-    this.status = status;
   }
 
   setLog(log) {
@@ -52,6 +45,6 @@ export class BotStatusComponent implements OnInit, OnChanges {
   }
 
   getStatus() {
-    return this.status;
+    return this.bot.getStatus();
   }
 }
