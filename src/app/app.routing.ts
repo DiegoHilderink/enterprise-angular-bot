@@ -7,6 +7,7 @@ import { AuthGuard } from './_helpers';
 import { Role } from './_models';
 import { BotStatusComponent } from './bot-status/bot-status.component';
 import { ChatSoporteComponent } from './chat-soporte/chat-soporte.component';
+import { UserComponent } from './user/user.component';
 
 const routes: Routes = [
     {
@@ -30,6 +31,12 @@ const routes: Routes = [
         path: 'chat-soporte',
         component: ChatSoporteComponent,
         canActivate: [AuthGuard],
+    },
+    {
+        path: 'user',
+        component: UserComponent,
+        canActivate: [AuthGuard],
+        data: { roles: [Role.Admin, Role.Empresa, Role.Empleado] }
     },
     {
         path: 'login',

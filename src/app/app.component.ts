@@ -35,6 +35,10 @@ export class AppComponent {
   get isEmpleado() {
     return this.currentUser && this.currentUser.role === Role.Empleado;
   }
+
+  get isUser() {
+    return this.currentUser && this.currentUser.role === Role.User;
+  }
   
   getStatus() {
     return this.bot.getStatus()

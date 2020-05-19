@@ -15,7 +15,7 @@
         <li class="nav-item ml-2">
             <a [routerLink]="['/chat-soporte']" class="btn btn-dark">Chat Soporte.</a>
         </li>
-        <li class="nav-item ml-2" *ngIf="currentUser">
+        <li class="nav-item ml-2" *ngIf="!isUser">
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="config" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
@@ -25,7 +25,7 @@
                     <a class="dropdown-item">
                         Configuraciones y gestiones del bot.
                     </a>
-                    <a class="dropdown-item">
+                    <a class="dropdown-item" [routerLink]="['/user']">
                         Gestión de entidades.
                     </a>
                     <a class="dropdown-item">
@@ -37,7 +37,7 @@
                     <a class="dropdown-item">
                         Configuraciones.
                     </a>
-                    <a class="dropdown-item">
+                    <a class="dropdown-item" [routerLink]="['/user']">
                         Gestión de empleados.
                     </a>
                     <a class="dropdown-item">
@@ -49,7 +49,7 @@
                     <a class="dropdown-item">
                         Configuraciones.
                     </a>
-                    <a class="dropdown-item">
+                    <a class="dropdown-item" [routerLink]="['/user']">
                         Gestión de usuarios.
                     </a>
                     <a class="dropdown-item">
