@@ -45,6 +45,9 @@ export class BotStatusComponent implements OnInit, OnChanges {
   }
 
   getStatus() {
-    return this.bot.getStatus();
+    var status = this.bot.getStatus();
+    console.log(status)
+    this.setLog(this.bot.getLog());
+    return status;
   }
 }

@@ -43,12 +43,26 @@ export class BotService {
     }
 
     setStatus() {
+        var aux = this.status;
+        var opc = {1:'off', 2:'err', 3:'fix'};
         var a = Math.floor(Math.random() * (100 - 0)) + 0;
         if (a > this.prob) {
             this.prob += 5
         } else {
-            this.status = !this.status;
+            aux = !this.status;
             this.prob = 5;
         };
+
+        if (aux != this.status) {
+            this.status = !this.status;
+            if (this.status === false){
+                var b = Math.floor(Math.random() * (3 - 1)) + 1;
+                this.log.push(opc[b]);
+            } else {
+                this.log.push('up');
+            }
+            console.log(this.log)
+        }
+
     }
 }
