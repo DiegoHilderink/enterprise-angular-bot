@@ -8,6 +8,7 @@ import { Role } from './_models';
 import { BotStatusComponent } from './bot-status/bot-status.component';
 import { ChatSoporteComponent } from './chat-soporte/chat-soporte.component';
 import { UserComponent } from './user/user.component';
+import { EmpresaComponent } from './empresa/empresa.component';
 
 const routes: Routes = [
     {
@@ -25,18 +26,25 @@ const routes: Routes = [
         path: 'bot-status',
         component: BotStatusComponent,
         canActivate: [AuthGuard],
-        data: { roles: [Role.Admin, Role.Empresa, Role.Empleado] }
+        data: { roles: [Role.Admin, Role.Empresa] }
+    },
+    {
+        path: 'empresa',
+        component: EmpresaComponent,
+        canActivate: [AuthGuard],
+        data: { roles: [Role.Admin, Role.Empresa] }
     },
     {
         path: 'chat-soporte',
         component: ChatSoporteComponent,
         canActivate: [AuthGuard],
+        data: { roles: [Role.User] }
     },
     {
         path: 'user',
         component: UserComponent,
         canActivate: [AuthGuard],
-        data: { roles: [Role.Admin, Role.Empresa, Role.Empleado] }
+        data: { roles: [Role.Admin, Role.Empresa] }
     },
     {
         path: 'login',

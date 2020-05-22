@@ -17,7 +17,11 @@ export class ChatSoporteComponent implements OnInit {
   current: User;
   userFromApi: User;
   faAngleRight = faAngleRight;
-  chat = [{user: "Soporte" , msg: "Hola, buenos días, en qué puedo ayudarle."}];
+  chat = [{ user: "Soporte", msg: "Hola, buenos días, en qué puedo ayudarle." }];
+
+  // answers = {
+  //   "Buenos días": "Buenos días" + this.userFromApi.firstName,
+  // }
 
   constructor(
     private userService: UserService,
@@ -34,13 +38,22 @@ export class ChatSoporteComponent implements OnInit {
     });
   }
 
-  sendMsg(sender:string) {
-      if (sender) {
-        this.chat.push({
-            user: this.userFromApi.firstName, 
-            msg: sender
-          });
-      }
+  sendMsg(sender: string) {
+    if (sender) {
+      this.chat.push({
+        user: this.userFromApi.firstName,
+        msg: sender
+      });
+    }
+
+    //this.sendAnswer(sender);
   }
 
+  /**
+   * This method allows you to reply according to the message received.
+   * @param msg 
+   */
+  // sendAnswer(msg: string) {
+  //   msg.includes()
+  // }
 }

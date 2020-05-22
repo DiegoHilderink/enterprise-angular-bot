@@ -6,10 +6,16 @@ import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 import { User, Role } from '../_models';
 
 const users: User[] = [
-    { id: 1, username: 'admin', password: 'admin', firstName: 'Admin', lastName: 'User', role: Role.Admin },
-    { id: 2, username: 'rentel', password: 'rentel', firstName: 'Rentel-wifi', lastName: 'User', role: Role.Empresa },
-    { id: 3, username: 'empleado', password: 'empleado', firstName: 'Diego', lastName: 'Hilderink', role: Role.Empleado },
-    { id: 4, username: 'user', password: 'user', firstName: 'Normal', lastName: 'User', role: Role.User }
+    { id: 1, username: 'admin', password: 'admin', firstName: 'Admin', lastName: 'User', role: Role.Admin, empresa: '' },
+    { id: 2, username: 'rentel', password: 'rentel', firstName: 'Rentel-wifi', lastName: 'User', role: Role.Empresa, empresa: 'Rentel-wifi' },
+    { id: 3, username: 'emp2', password: 'rentel', firstName: 'Rentel-comunicaciones', lastName: 'User', role: Role.Empresa, empresa: 'Rentel-comunicaciones' },
+    { id: 4, username: 'emp3', password: 'rentel', firstName: 'Empresa 4', lastName: 'User', role: Role.Empresa, empresa: '' },
+    { id: 5, username: 'emp4', password: 'rentel', firstName: 'Empresa 5', lastName: 'User', role: Role.Empresa, empresa: '' },
+    { id: 6, username: 'user', password: 'user', firstName: 'Diego', lastName: 'Hilderink', role: Role.User, empresa: 'Rentel-wifi' },
+    { id: 7, username: 'user', password: 'user', firstName: 'Normal', lastName: 'User', role: Role.User, empresa: 'Rentel-wifi' },
+    { id: 8, username: 'user', password: 'user', firstName: 'Normal', lastName: 'User', role: Role.User, empresa: 'Rentel-wifi' },
+    { id: 9, username: 'user', password: 'user', firstName: 'Normal', lastName: 'User', role: Role.User, empresa: 'Rentel-wifi' },
+    { id: 10, username: 'user', password: 'user', firstName: 'Normal', lastName: 'User', role: Role.User, empresa: 'Rentel-wifi' }
 ];
 
 @Injectable()
@@ -32,6 +38,9 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                     return getUsers();
                 case url.match(/\/users\/\d+$/) && method === 'GET':
                     return getUserById();
+                case url.match('\/emp\/.+') && method === 'GET':
+                    console.log('existo')
+                    return getUserByEmpresa();
                 default:
                     // pass through any requests not handled above
                     return next.handle(request);
@@ -51,7 +60,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 firstName: user.firstName,
                 lastName: user.lastName,
                 role: user.role,
-                token: `fake-jwt-token.${user.id}`
+                token: `fake-jwt-token.${user.id}`,
+                empresa: user.empresa
             });
         }
 
@@ -67,6 +77,27 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             if (!isAdmin() && currentUser().id !== idFromUrl()) return unauthorized();
 
             const user = users.find(x => x.id === idFromUrl());
+            return ok(user);
+        }
+
+        function getUserByEmpresa() {
+            if (!isLoggedIn()) {
+                console.log('2oD')
+                return unauthorized();
+            }
+            
+            // only admins can access other user records
+            if ((!isAdmin() || !isEmpresa()) && currentUser().empresa !== empFromUrl()) {
+                console.log('2oD')
+                return unauthorized();
+            }
+
+            var user = [];
+            users.forEach(k => {
+                if (k.empresa === empFromUrl()){
+                    user.push(k)
+                }
+            });
             return ok(user);
         }
 
@@ -93,6 +124,10 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             return isLoggedIn() && currentUser().role === Role.Admin;
         }
 
+        function isEmpresa() {
+            return isLoggedIn() && currentUser().role === Role.Empresa;
+        }
+
         function currentUser() {
             if (!isLoggedIn()) return;
             const id = parseInt(headers.get('Authorization').split('.')[1]);
@@ -103,6 +138,15 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             const urlParts = url.split('/');
             return parseInt(urlParts[urlParts.length - 1]);
         }
+
+        function empFromUrl() {
+            const urlParts = url.split('/');
+            return urlParts[urlParts.length - 1];
+        }
+
+        /**Registro de usuarios 
+         * function singIn(){
+         * } */
     }
 }
 

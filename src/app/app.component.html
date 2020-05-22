@@ -1,18 +1,22 @@
 <nav class="navbar navbar-light bg-light">
-    <a class="navbar-brand" href="#">
-        <img src="favicon.ico" width="30" height="30" class="d-inline-block align-top" alt="">
-        Bot Configuration.
-    </a>
+    <div class="navbar-brand">
+        <a href="#" class="text-dark" style="text-decoration: none;">
+            <img src="favicon.ico" width="30" height="30" class="d-inline-block align-top" alt="">
+            Bot Configuration.
+        </a>
+        <a *ngIf="currentUser" class="ml-2"><strong> Usuario</strong>: {{currentUser.firstName}}</a>
+    </div>
+
 
     <ul class="nav justify-content-end">
-        <li class="ml-2 nav-item" *ngIf="!currentUser">
-            <a class="btn btn-light"><fa-icon [icon]="faBullseye" class="text-success" (click)="getStatus()" [ngClass]="getStatus() ? 'text-success ': 'text-danger'"></fa-icon></a>
-        </li>
         <li class="ml-2 nav-item" *ngIf="currentUser">
-            <a  class="btn btn-light"><fa-icon [routerLink]="['/bot-status']" [icon]="faBullseye" class="text-success" (click)="getStatus()" [ngClass]="getStatus() ? 'text-success ': 'text-danger'"></fa-icon></a>
+            <a class="btn btn-light">
+                <fa-icon [routerLink]="['/bot-status']" [icon]="faBullseye" class="text-success" (click)="getStatus()"
+                    [ngClass]="getStatus() ? 'text-success ': 'text-danger'"></fa-icon>
+            </a>
         </li>
 
-        <li class="nav-item ml-2">
+        <li class="nav-item ml-2" *ngIf="isUser">
             <a [routerLink]="['/chat-soporte']" class="btn btn-dark">Chat Soporte.</a>
         </li>
         <li class="nav-item ml-2" *ngIf="currentUser && !isUser">
@@ -21,7 +25,7 @@
                     aria-haspopup="true" aria-expanded="false">
                     <fa-icon [icon]="faCog"></fa-icon>
                 </button>
-                
+
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" *ngIf="isAdmin">
                     <a class="dropdown-item">
                         Configuraciones y gestiones del bot.
@@ -29,32 +33,14 @@
                     <a class="dropdown-item" [routerLink]="['/user']">
                         Gestión de entidades.
                     </a>
-                    <a class="dropdown-item">
+                    <a class="dropdown-item" [routerLink]="['/admin']">
                         Estado del sistema.
                     </a>
                 </div>
 
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" *ngIf="isEmpresa">
-                    <a class="dropdown-item">
-                        Configuraciones.
-                    </a>
-                    <a class="dropdown-item" [routerLink]="['/user']">
+                    <a class="dropdown-item" [routerLink]="['/empresa']">
                         Gestión de empleados.
-                    </a>
-                    <a class="dropdown-item">
-                        Estado del sistema.
-                    </a>
-                </div>
-
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" *ngIf="isEmpleado">
-                    <a class="dropdown-item">
-                        Configuraciones.
-                    </a>
-                    <a class="dropdown-item" [routerLink]="['/user']">
-                        Gestión de usuarios.
-                    </a>
-                    <a class="dropdown-item">
-                        Estado del sistema.
                     </a>
                 </div>
             </div>

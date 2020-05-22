@@ -1,11 +1,50 @@
-<div class="card mt-4">
-    <h4 class="card-header">Admin</h4>
-    <div class="card-body">
-        <p>This page can be accessed <u>only by administrators</u>.</p>
-        <p class="mb-1">All users from secure (admin only) api end point:</p>
-        <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
-        <ul *ngIf="users">
-            <li *ngFor="let user of users">{{user.firstName}} {{user.lastName}}</li>
-        </ul>
+<div class="card mt-4 border-0">
+    <h3>Panel de gestión de empresas.</h3>
+    <div>
+        <table class="table table-dark rounded mt-2">
+            <thead>
+                <tr>
+                    <th scope="col">Identificador</th>
+                    <th scope="col">Empresa</th>
+                    <th scope="col">Servidor</th>
+                    <th scope="col">Bot</th>
+                    <th scope="col">Empleados activos</th>
+                    <th scope="col">Gestión</th>
+                </tr>
+            </thead>
+            <tbody>
+                <ng-container *ngFor="let user of users">
+                    <tr *ngIf="user.role==='Empresa'">
+                        <th scope="row">{{user.id}}</th>
+                        <td>{{user.firstName}}</td>
+                        <td>
+                            <a class="btn btn-dark">
+                                <fa-icon class="text-danger" [icon]="faBull"></fa-icon>
+                            </a>
+                        </td>
+                        <td>
+                            <!-- bot status -->
+                            <a class="btn btn-dark">
+                                <fa-icon [icon]="faBull" class="text-success" (click)="getStatus()"
+                                    [ngClass]="getStatus() ? 'text-success ': 'text-danger'"></fa-icon>
+                            </a>
+                        </td>
+                        <td>3/1</td>
+                        <td>
+                            <div class="dropdown">
+                                <button class="btn btn-light dropdown-toggle" type="button" id="config-1"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <fa-icon class="text-dark" [icon]="faCog"></fa-icon>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="config-1">
+                                    <a class="dropdown-item">View</a>
+                                    <a class="dropdown-item">Delete</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </ng-container>
+            </tbody>
+        </table>
     </div>
 </div>

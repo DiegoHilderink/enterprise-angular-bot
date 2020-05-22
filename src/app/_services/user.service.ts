@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { first } from 'rxjs/operators';
+
 
 import { environment } from '../../environments/environment';
-import { User } from '../_models';
+import { Role, User } from '../_models';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
@@ -14,5 +16,9 @@ export class UserService {
 
     getById(id: number) {
         return this.http.get<User>(`${environment.apiUrl}/users/${id}`);
+    }
+
+    getByEmp(emp: string) {
+        return this.http.get<User>(`${environment.apiUrl}/emp/${emp}`);
     }
 }

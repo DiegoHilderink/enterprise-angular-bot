@@ -19,6 +19,7 @@ import { BotStatusComponent } from './bot-status/bot-status.component';
 import { BotService } from './_services';
 import { ChatSoporteComponent } from './chat-soporte/chat-soporte.component';
 import { UserComponent } from './user/user.component';
+import { EmpresaComponent } from './empresa/empresa.component';
 
 @NgModule({
   imports: [
@@ -36,7 +37,8 @@ import { UserComponent } from './user/user.component';
     LoginComponent,
     BotStatusComponent,
     ChatSoporteComponent,
-    UserComponent
+    UserComponent,
+    EmpresaComponent
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

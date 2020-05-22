@@ -32,10 +32,6 @@ export class AppComponent {
     return this.currentUser && this.currentUser.role === Role.Empresa;
   }
   
-  get isEmpleado() {
-    return this.currentUser && this.currentUser.role === Role.Empleado;
-  }
-
   get isUser() {
     return this.currentUser && this.currentUser.role === Role.User;
   }

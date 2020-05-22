@@ -7,5 +7,6 @@ export class User {
     firstName: string;
     lastName: string;
     role: Role;
+    empresa: string = null;
     token?: string;
 }

@@ -30,7 +30,7 @@ export class BotService {
     }
 
     addNumber(number) {
-        this.blocked.push(number);
+        this.blocked.unshift(number);
     }
 
     getLog(){
@@ -57,9 +57,9 @@ export class BotService {
             this.status = !this.status;
             if (this.status === false){
                 var b = Math.floor(Math.random() * (3 - 1)) + 1;
-                this.log.push(opc[b]);
+                this.log.unshift(opc[b]);
             } else {
-                this.log.push('up');
+                this.log.unshift('up');
             }
             console.log(this.log)
         }
