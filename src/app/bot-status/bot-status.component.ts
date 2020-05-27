@@ -18,12 +18,12 @@ const msg = {
 export class BotStatusComponent implements OnInit, OnChanges {
   log = [];
   faSync = faSync;
+  btnStatus: string;
 
   constructor(private bot: BotService) { }
 
   ngOnInit(): void {
     this.setLog(this.bot.getLog());
-    console.log(this.log)
   }
 
   /**
@@ -40,13 +40,22 @@ export class BotStatusComponent implements OnInit, OnChanges {
 
   setLog(log) {
     log.forEach(k => {
-      this.log.push({k: msg[k]}) 
+      this.log.push({ k: msg[k] })
     });
+  }
+
+  activate() {
+    this.swapBotStatus(this.bot.forcedStatus())
+  }
+
+  swapBotStatus(status: boolean) {
+    status ? this.btnStatus = "On" : this.btnStatus = "Off";
   }
 
   getStatus() {
     var status = this.bot.getStatus();
-    console.log(status)
+    this.swapBotStatus(status);
+
     this.setLog(this.bot.getLog());
     return status;
   }

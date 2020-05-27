@@ -4,7 +4,7 @@
             <img src="favicon.ico" width="30" height="30" class="d-inline-block align-top" alt="">
             Bot Configuration.
         </a>
-        <a *ngIf="currentUser" class="ml-2"><strong> Usuario</strong>: {{currentUser.firstName}}</a>
+        <a *ngIf="currentUser" [routerLink]="['/user']" class="ml-2"><strong> Usuario</strong>: {{currentUser.firstName}}</a>
     </div>
 
 
@@ -27,20 +27,20 @@
                 </button>
 
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" *ngIf="isAdmin">
-                    <a class="dropdown-item">
+                    <a class="dropdown-item" [routerLink]="['/bot-status']">
                         Configuraciones y gestiones del bot.
                     </a>
-                    <a class="dropdown-item" [routerLink]="['/user']">
-                        Gestión de entidades.
-                    </a>
                     <a class="dropdown-item" [routerLink]="['/admin']">
-                        Estado del sistema.
+                        Entidades.
                     </a>
                 </div>
 
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" *ngIf="isEmpresa">
                     <a class="dropdown-item" [routerLink]="['/empresa']">
                         Gestión de empleados.
+                    </a>
+                    <a class="dropdown-item" [routerLink]="['/bot-status']">
+                        Estado del sistema.
                     </a>
                 </div>
             </div>

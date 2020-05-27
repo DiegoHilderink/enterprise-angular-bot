@@ -1,0 +1,36 @@
+<div class="row mt-4">
+    <h3 class="col-lg-12" *ngIf="isAdmin">Crear entidad</h3>
+    <h3 class="col-lg-12" *ngIf="isEmpresa">Crear empleado</h3>
+
+    <div class="col-lg-4">
+        <img src="../../assets/unnamed.jpg" class="w-100" alt="No se encuentra imagen">
+    </div>
+
+    <div class="col-lg-8">
+        <div class="form-group">
+            <label for="username">Nombre de usuario</label>
+            <input type="text" class="form-control" id="username" aria-describedby="emailHelp">
+        </div>
+        <div class="form-group">
+            <label for="name">Nombre</label>
+            <input type="text" class="form-control" id="name" aria-describedby="emailHelp">
+        </div>
+        <div class="form-group">
+            <label for="lastname">Apellidos</label>
+            <input type="text" class="form-control" id="lastname" aria-describedby="emailHelp">
+        </div>
+        <div class="form-group">
+            <label for="passwd">Contraseña</label>
+            <input type="password" class="form-control" id="passwd">
+        </div>
+        <div class="form-group">
+            <label for="empresa">Empresa</label>
+            <input type="text" class="form-control" id="empresa" aria-describedby="emailHelp">
+        </div>
+
+
+        <button type="submit" class="btn btn-primary">Crear</button>
+        <a *ngIf="isAdmin" [routerLink]="['/admin']" class="m-2 btn btn-warning text-light">Atrás</a>
+        <a *ngIf="isEmpresa" [routerLink]="['/empresa']" class="m-2 btn btn-warning text-light">Atrás</a>
+    </div>
+</div>

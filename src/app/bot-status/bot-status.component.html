@@ -1,11 +1,21 @@
 <div class="container">
-    <h3>Bot status.</h3>
     <div>
-        <p>Status: <strong class="text-success" [ngClass]="getStatus() ? 'text-success ': 'text-danger'">{{getStatus()}}</strong><button class="ml-2 btn"><fa-icon [icon]="faSync"></fa-icon></button></p>
+        <h3>Bot status.</h3>
+        <div>
+            <p>Status: <strong class="text-success"
+                    [ngClass]="getStatus() ? 'text-success ': 'text-danger'">{{getStatus()}}</strong><button
+                    class="ml-2 btn">
+                    <fa-icon [icon]="faSync"></fa-icon>
+                </button></p>
+        </div>
+
+        <div class="console container overflow-auto p-2">
+            <p *ngFor="let log of log;">>{{log.k}}</p>
+        </div>
     </div>
-
-    <div class="console container overflow-auto p-2" >
-        <p *ngFor="let log of log;">>{{log.k}}</p>
-
+<br>
+    <div>
+        <h3>Bot Configuration.</h3>
+        <button class="btn btn-warning text-light" (click)="activate">{{btnStatus}}</button>
     </div>
 </div>

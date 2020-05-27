@@ -65,4 +65,10 @@ export class BotService {
         }
 
     }
+
+    forcedStatus() {
+        this.status = !this.status;
+        this.prob = 5;
+        return this.status;
+    }
 }

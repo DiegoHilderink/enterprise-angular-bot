@@ -9,6 +9,7 @@ import { BotStatusComponent } from './bot-status/bot-status.component';
 import { ChatSoporteComponent } from './chat-soporte/chat-soporte.component';
 import { UserComponent } from './user/user.component';
 import { EmpresaComponent } from './empresa/empresa.component';
+import { CreateComponent } from './create/create.component';
 
 const routes: Routes = [
     {
@@ -32,6 +33,12 @@ const routes: Routes = [
         path: 'empresa',
         component: EmpresaComponent,
         canActivate: [AuthGuard],
+        data: { roles: [Role.Empresa] }
+    },
+    {
+        path: 'create',
+        component: CreateComponent,
+        canActivate: [AuthGuard],
         data: { roles: [Role.Admin, Role.Empresa] }
     },
     {
@@ -44,7 +51,7 @@ const routes: Routes = [
         path: 'user',
         component: UserComponent,
         canActivate: [AuthGuard],
-        data: { roles: [Role.Admin, Role.Empresa] }
+        data: { roles: [Role.Admin, Role.Empresa, Role.User] }
     },
     {
         path: 'login',
