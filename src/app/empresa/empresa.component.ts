@@ -33,11 +33,23 @@ export class EmpresaComponent implements OnInit {
     this.userService.getByEmp(this.empresa).pipe(first()).subscribe(user => {
       this.loading = false;
       this.user = user;
-      console.log(this.user)
     });
   }
 
   getStatus() {
     return this.bot.getStatus();
+  }
+
+  delete(id: number) {
+    var cont = 0;
+    var aux = true
+    while (aux) {
+        if (this.user[cont].id === id) {
+          this.user.splice(cont, 1)
+          aux = false;
+        } else {
+          cont++
+        }
+    }
   }
 }
