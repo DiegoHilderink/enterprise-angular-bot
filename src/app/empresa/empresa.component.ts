@@ -30,7 +30,6 @@ export class EmpresaComponent implements OnInit {
 
   ngOnInit() {
     this.loading = true;
-    console.log(this.empresa)
     this.userService.getByEmp(this.empresa).pipe(first()).subscribe(user => {
       this.loading = false;
       this.user = user;
