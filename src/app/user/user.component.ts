@@ -33,7 +33,8 @@ export class UserComponent implements OnInit {
   }
 
   setImg() {
-    if (this.currentUser && !this.isAdmin) {
+    if (this.currentUser) {
+
       this.logo = "../../assets/" + this.userFromApi.id + ".png";
     }
   }
