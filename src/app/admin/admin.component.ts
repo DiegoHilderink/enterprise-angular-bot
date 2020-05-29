@@ -26,4 +26,17 @@ export class AdminComponent implements OnInit {
     getStatus() {
         return this.bot.getStatus();
     }
+
+    delete(id: number) {
+        var cont = 0;
+        var aux = true
+        while (aux) {
+          if (this.users[cont].id === id) {
+            this.users.splice(cont, 1)
+            aux = false;
+          } else {
+            cont++
+          }
+        }
+      }
 }

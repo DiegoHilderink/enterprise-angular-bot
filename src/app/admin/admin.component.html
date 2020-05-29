@@ -41,7 +41,7 @@
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="config-1">
                                     <a class="dropdown-item" [routerLink]="['/user']" [state]="{ data: user.id }">View</a>
-                                    <a class="dropdown-item">Delete</a>
+                                    <a class="dropdown-item" (click)="delete(user.id)">Delete</a>
                                 </div>
                             </div>
                         </td>

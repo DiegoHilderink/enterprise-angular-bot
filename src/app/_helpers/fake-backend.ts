@@ -6,15 +6,15 @@ import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 import { User, Role } from '../_models';
 
 const users: User[] = [
-    { id: 1,  password: 'admin', firstName: 'Admin', lastName: 'User', phone: 699766721, email: 'admin@email.com',role: Role.Admin, empresa: '' },
-    { id: 2,  password: 'rentel', firstName: 'Rentel-wifi', lastName: 'User', phone: 699766721, email: 'rentel@email.com', role: Role.Empresa, empresa: 'Rentel-wifi' },
-    { id: 3,  password: 'rentel', firstName: 'Rentel-comunicaciones', lastName: 'User', phone: 699766721, email: 'rentel_conf@email.com', role: Role.Empresa, empresa: 'Rentel-comunicaciones' },
-    { id: 4,  password: 'rentel', firstName: 'Empresa 4', lastName: 'User', phone: 699766721, email: 'emp1@email.com', role: Role.Empresa, empresa: 'empresa3' },
-    { id: 5,  password: 'rentel', firstName: 'Empresa 5', lastName: 'User', phone: 699766721, email: 'emp2@email.com', role: Role.Empresa, empresa: 'empresa4' },
-    { id: 6,  password: 'user', firstName: 'User', lastName: 'User', phone: 699766721, email: 'user1@email.com', role: Role.User, empresa: 'Rentel-wifi' },
-    { id: 7,  password: 'user', firstName: 'Normal', lastName: 'User', phone: 699766721, email: 'user2@email.com', role: Role.User, empresa: 'Rentel-wifi' },
-    { id: 8,  password: 'user', firstName: 'Normal', lastName: 'User', phone: 699766721, email: 'user3@email.com', role: Role.User, empresa: 'Rentel-wifi' },
-    { id: 9,  password: 'user', firstName: 'Normal', lastName: 'User', phone: 699766721, email: 'user4@email.com', role: Role.User, empresa: 'Rentel-wifi' },
+    { id: 1, password: 'admin', firstName: 'Admin', lastName: 'User', phone: 699766721, email: 'admin@email.com', role: Role.Admin, empresa: '' },
+    { id: 2, password: 'rentel', firstName: 'Rentel-wifi', lastName: 'User', phone: 699766721, email: 'rentel@email.com', role: Role.Empresa, empresa: 'Rentel-wifi' },
+    { id: 3, password: 'rentel', firstName: 'Rentel-comunicaciones', lastName: 'User', phone: 699766721, email: 'rentel_conf@email.com', role: Role.Empresa, empresa: 'Rentel-comunicaciones' },
+    { id: 4, password: 'rentel', firstName: 'Empresa 4', lastName: 'User', phone: 699766721, email: 'emp1@email.com', role: Role.Empresa, empresa: 'empresa3' },
+    { id: 5, password: 'rentel', firstName: 'Empresa 5', lastName: 'User', phone: 699766721, email: 'emp2@email.com', role: Role.Empresa, empresa: 'empresa4' },
+    { id: 6, password: 'user', firstName: 'User', lastName: 'User', phone: 699766721, email: 'user1@email.com', role: Role.User, empresa: 'Rentel-wifi' },
+    { id: 7, password: 'user', firstName: 'Normal', lastName: 'User', phone: 699766721, email: 'user2@email.com', role: Role.User, empresa: 'Rentel-wifi' },
+    { id: 8, password: 'user', firstName: 'Normal', lastName: 'User', phone: 699766721, email: 'user3@email.com', role: Role.User, empresa: 'Rentel-wifi' },
+    { id: 9, password: 'user', firstName: 'Normal', lastName: 'User', phone: 699766721, email: 'user4@email.com', role: Role.User, empresa: 'Rentel-wifi' },
     { id: 10, password: 'user', firstName: 'Normal', lastName: 'User', phone: 699766721, email: 'user5@email.com', role: Role.User, empresa: 'Rentel-wifi' }
 ];
 
@@ -24,11 +24,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         const { url, method, headers, body } = request;
 
         // wrap in delayed observable to simulate server api call
-        return of(null)
-            .pipe(mergeMap(handleRoute))
-            .pipe(materialize()) // call materialize and dematerialize to ensure delay even if an error is thrown (https://github.com/Reactive-Extensions/RxJS/issues/648)
-            .pipe(delay(500))
-            .pipe(dematerialize());
+        return of(null).pipe(mergeMap(handleRoute)).pipe(materialize()).pipe(delay(500)).pipe(dematerialize());
 
         function handleRoute() {
             switch (true) {
@@ -64,6 +60,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             });
         }
 
+
         function getUsers() {
             if (!isAdmin()) return unauthorized();
             return ok(users);
@@ -81,9 +78,9 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 console.log('2oD')
                 return unauthorized();
             }
-            
+
             // only admins can access other user records
-            if(!isAdmin()) {
+            if (!isAdmin()) {
                 if (!isEmpresa() && currentUser().empresa !== empFromUrl()) {
                     console.log('2oD')
                     return unauthorized();
@@ -92,11 +89,11 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
             var user = [];
             users.forEach(k => {
-                if (k.empresa === empFromUrl()){
+                if (k.empresa === empFromUrl()) {
                     user.push(k)
                 }
             });
-            
+
             return ok(user);
         }
 
