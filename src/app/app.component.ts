@@ -16,12 +16,23 @@ export class AppComponent {
   faBullseye = faBullseye;
   currentUser: User;
 
+  public logo;
+
   constructor(
     private router: Router,
     private authenticationService: AuthService,
     private bot: BotService
   ) {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+    this.setImg()
+  }
+
+  setImg() {
+    if (this.currentUser && !this.isAdmin) {
+      this.logo = "./assets/" + this.currentUser.empresa + ".png";
+    } else {
+      this.logo = "./favicon.ico";
+    }
   }
 
   get isAdmin() {
@@ -29,6 +40,7 @@ export class AppComponent {
   }
 
   get isEmpresa() {
+    this.setImg();
     return this.currentUser && this.currentUser.role === Role.Empresa;
   }
   
