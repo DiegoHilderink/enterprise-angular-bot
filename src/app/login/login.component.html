@@ -1,18 +1,18 @@
 <div class="col-md-6 offset-md-3 mt-5">
     <div class="alert alert-info">
-        <strong>Normal User</strong> - U: user P: user<br />
-        <strong>Empresa</strong> - U: rentel P: rentel <br>
-        <strong>Administrator</strong> - U: admin P: admin <br>
+        <strong>Normal User</strong> - U: user1@email.com // P: user<br />
+        <strong>Empresa</strong> - U: rentel@email.com // P: rentel <br>
+        <strong>Administrator</strong> - U: admin@email.com // P: admin <br>
     </div>
     <div class="card">
         <h4 class="card-header">Login.</h4>
         <div class="card-body">
             <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                 <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
-                    <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-                        <div *ngIf="f.username.errors.required">Username is required</div>
+                    <label for="email">Email</label>
+                    <input type="email" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                        <div *ngIf="f.email.errors.required">Email is required</div>
                     </div>
                 </div>
                 <div class="form-group">

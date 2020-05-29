@@ -6,16 +6,16 @@ import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 import { User, Role } from '../_models';
 
 const users: User[] = [
-    { id: 1, username: 'admin', password: 'admin', firstName: 'Admin', lastName: 'User', phone: 699766721, email: 'user@email.com',role: Role.Admin, empresa: '' },
-    { id: 2, username: 'rentel', password: 'rentel', firstName: 'Rentel-wifi', lastName: 'User', phone: 699766721, email: 'user@email.com', role: Role.Empresa, empresa: 'Rentel-wifi' },
-    { id: 3, username: 'emp2', password: 'rentel', firstName: 'Rentel-comunicaciones', lastName: 'User', phone: 699766721, email: 'user@email.com', role: Role.Empresa, empresa: 'Rentel-comunicaciones' },
-    { id: 4, username: 'emp3', password: 'rentel', firstName: 'Empresa 4', lastName: 'User', phone: 699766721, email: 'user@email.com', role: Role.Empresa, empresa: '' },
-    { id: 5, username: 'emp4', password: 'rentel', firstName: 'Empresa 5', lastName: 'User', phone: 699766721, email: 'user@email.com', role: Role.Empresa, empresa: '' },
-    { id: 6, username: 'user', password: 'user', firstName: 'Diego', lastName: 'Hilderink', phone: 699766721, email: 'user@email.com', role: Role.User, empresa: 'Rentel-wifi' },
-    { id: 7, username: 'user', password: 'user', firstName: 'Normal', lastName: 'User', phone: 699766721, email: 'user@email.com', role: Role.User, empresa: 'Rentel-wifi' },
-    { id: 8, username: 'user', password: 'user', firstName: 'Normal', lastName: 'User', phone: 699766721, email: 'user@email.com', role: Role.User, empresa: 'Rentel-wifi' },
-    { id: 9, username: 'user', password: 'user', firstName: 'Normal', lastName: 'User', phone: 699766721, email: 'user@email.com', role: Role.User, empresa: 'Rentel-wifi' },
-    { id: 10, username: 'user', password: 'user', firstName: 'Normal', lastName: 'User', phone: 699766721, email: 'user@email.com', role: Role.User, empresa: 'Rentel-wifi' }
+    { id: 1,  password: 'admin', firstName: 'Admin', lastName: 'User', phone: 699766721, email: 'admin@email.com',role: Role.Admin, empresa: '' },
+    { id: 2,  password: 'rentel', firstName: 'Rentel-wifi', lastName: 'User', phone: 699766721, email: 'rentel@email.com', role: Role.Empresa, empresa: 'Rentel-wifi' },
+    { id: 3,  password: 'rentel', firstName: 'Rentel-comunicaciones', lastName: 'User', phone: 699766721, email: 'rentel_conf@email.com', role: Role.Empresa, empresa: 'Rentel-comunicaciones' },
+    { id: 4,  password: 'rentel', firstName: 'Empresa 4', lastName: 'User', phone: 699766721, email: 'emp4@email.com', role: Role.Empresa, empresa: '' },
+    { id: 5,  password: 'rentel', firstName: 'Empresa 5', lastName: 'User', phone: 699766721, email: 'emp5@email.com', role: Role.Empresa, empresa: '' },
+    { id: 6,  password: 'user', firstName: 'User', lastName: 'user', phone: 699766721, email: 'user1@email.com', role: Role.User, empresa: 'Rentel-wifi' },
+    { id: 7,  password: 'user', firstName: 'Normal', lastName: 'User', phone: 699766721, email: 'user2@email.com', role: Role.User, empresa: 'Rentel-wifi' },
+    { id: 8,  password: 'user', firstName: 'Normal', lastName: 'User', phone: 699766721, email: 'user3@email.com', role: Role.User, empresa: 'Rentel-wifi' },
+    { id: 9,  password: 'user', firstName: 'Normal', lastName: 'User', phone: 699766721, email: 'user4@email.com', role: Role.User, empresa: 'Rentel-wifi' },
+    { id: 10, password: 'user', firstName: 'Normal', lastName: 'User', phone: 699766721, email: 'user5@email.com', role: Role.User, empresa: 'Rentel-wifi' }
 ];
 
 @Injectable()
@@ -51,12 +51,12 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         // route functions
 
         function authenticate() {
-            const { username, password } = body;
-            const user = users.find(x => x.username === username && x.password === password);
+            const { email, password } = body;
+            const user = users.find(x => x.email === email && x.password === password);
             if (!user) return error('Username or password is incorrect');
             return ok({
                 id: user.id,
-                username: user.username,
+                email: user.email,
                 firstName: user.firstName,
                 lastName: user.lastName,
                 role: user.role,
