@@ -4,9 +4,11 @@
 
         <a href="#" class="text-dark" style="text-decoration: none;"
             *ngIf="isEmpresa || isUser; else nameBlock">{{currentUser.empresa}}</a>
-        <ng-template #nameBlock> Bot Configuration.</ng-template>
+        <ng-template #nameBlock>
+            <a href="#" class="text-dark" style="text-decoration: none;">Bot Configuration.</a>
+        </ng-template>
 
-        <a *ngIf="currentUser" [routerLink]="['/user']" class="ml-2"><strong> Usuario</strong>:
+        <a *ngIf="currentUser" [routerLink]="['/user']" style="text-decoration: none;" class="ml-2"><strong> Perfil</strong>:
             {{currentUser.firstName}}</a>
     </div>
 
