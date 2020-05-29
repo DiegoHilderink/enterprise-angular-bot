@@ -13,6 +13,7 @@ import { User, Role } from '../_models'
 export class UserComponent implements OnInit {
   currentUser: User;
   userFromApi: User;
+  id: number;
 
   constructor(
     private bot: BotService,
@@ -20,10 +21,11 @@ export class UserComponent implements OnInit {
     private authenticationService: AuthService
   ) {
     this.currentUser = this.authenticationService.currentUserValue;
+    this.id = history.state.data !== undefined ? history.state.data : this.currentUser.id;
   }
 
   ngOnInit(): void {
-    this.userService.getById(this.currentUser.id).pipe(first()).subscribe(user => {
+    this.userService.getById(this.id).pipe(first()).subscribe(user => {
       this.userFromApi = user;
     });
   }
