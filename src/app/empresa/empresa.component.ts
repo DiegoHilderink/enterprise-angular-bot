@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { first } from 'rxjs/operators';
 
 import { UserService, BotService, AuthService } from '../_services';
-import { User } from '../_models';
+import { User, Role } from '../_models';
 import { faCog, faBullseye } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -25,11 +25,12 @@ export class EmpresaComponent implements OnInit {
     private bot: BotService
   ) {
     this.currentUser = this.authenticationService.currentUserValue;
-    this.empresa = this.currentUser.empresa
+    this.empresa = this.getEmp()
   }
 
   ngOnInit() {
     this.loading = true;
+    console.log(this.empresa)
     this.userService.getByEmp(this.empresa).pipe(first()).subscribe(user => {
       this.loading = false;
       this.user = user;
@@ -44,12 +45,20 @@ export class EmpresaComponent implements OnInit {
     var cont = 0;
     var aux = true
     while (aux) {
-        if (this.user[cont].id === id) {
-          this.user.splice(cont, 1)
-          aux = false;
-        } else {
-          cont++
-        }
+      if (this.user[cont].id === id) {
+        this.user.splice(cont, 1)
+        aux = false;
+      } else {
+        cont++
+      }
+    }
+  }
+
+  getEmp() {
+    if (this.currentUser.role === Role.Admin) {
+     return history.state.data
+    } else {
+      return this.currentUser.empresa
     }
   }
 }

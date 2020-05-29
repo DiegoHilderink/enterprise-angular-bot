@@ -17,7 +17,7 @@
             <tbody>
                 <ng-container *ngFor="let user of users">
                     <tr *ngIf="user.role==='Empresa'">
-                        <td><a [routerLink]="['/empresa']"> {{user.firstName}} </a></td>
+                        <td><a [routerLink]="['/empresa']" [state]="{ data: user.empresa}"> {{user.firstName}} </a></td>
                         <td>{{user.phone}}</td>
                         <td>{{user.email}}</td>
                         <td>

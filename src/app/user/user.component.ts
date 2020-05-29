@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { first } from 'rxjs/operators';
 
 import { BotService, UserService, AuthService } from '../_services';
-import { User } from '../_models'
+import { User, Role } from '../_models'
 
 @Component({
   selector: 'app-user',
@@ -28,5 +28,7 @@ export class UserComponent implements OnInit {
     });
   }
 
-
+  get isAdmin() {
+    return this.currentUser && this.currentUser.role === Role.Admin;
+  }
 }

@@ -7,16 +7,15 @@
     <div class="col-lg-8">
         <h4>Datos del usuario.</h4>
         <ul class="list-group">
+            <li class="list-group-item"><strong> Email: </strong> {{userFromApi.email}}</li>
+            <li class="list-group-item"><strong> Passwd: </strong> ***********</li>
+        </ul>
+        <br>
+        <h4>Datos personales</h4>
+        <ul class="list-group">
             <li class="list-group-item"><strong> Nombre: </strong>{{userFromApi.firstName}}</li>
             <li class="list-group-item"><strong> Apellidos: </strong> {{userFromApi.lastName}}</li>
             <li class="list-group-item"><strong> Telefono: </strong> {{userFromApi.phone}}</li>
-        </ul>
-        <br>
-        <h4>Datos adiccionales</h4>
-        <ul class="list-group">
-            <li class="list-group-item"><strong> Email: </strong> {{userFromApi.email}}</li>
-            <li class="list-group-item"><strong> Rol: </strong> {{userFromApi.role}}</li>
-            <li class="list-group-item"><strong> Empresa: </strong> {{userFromApi.empresa}}</li>
         </ul>
     </div>
 </div>
