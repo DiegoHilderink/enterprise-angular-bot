@@ -72,9 +72,6 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         function getUserById() {
             if (!isLoggedIn()) return unauthorized();
 
-            // only admins can access other user records
-            if (!isAdmin() && currentUser().id !== idFromUrl()) return unauthorized();
-
             const user = users.find(x => x.id === idFromUrl());
             return ok(user);
         }

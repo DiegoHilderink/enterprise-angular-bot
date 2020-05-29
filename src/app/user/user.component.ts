@@ -14,6 +14,7 @@ export class UserComponent implements OnInit {
   currentUser: User;
   userFromApi: User;
   id: number;
+  logo: string;
 
   constructor(
     private bot: BotService,
@@ -27,7 +28,14 @@ export class UserComponent implements OnInit {
   ngOnInit(): void {
     this.userService.getById(this.id).pipe(first()).subscribe(user => {
       this.userFromApi = user;
+      this.setImg()
     });
+  }
+
+  setImg() {
+    if (this.currentUser && !this.isAdmin) {
+      this.logo = "../../assets/" + this.userFromApi.id + ".png";
+    }
   }
 
   get isAdmin() {
