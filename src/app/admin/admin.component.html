@@ -5,8 +5,9 @@
         <table class="table table-dark rounded mt-2">
             <thead>
                 <tr>
-                    <th scope="col">Identificador</th>
                     <th scope="col">Empresa</th>
+                    <th scope="col">Número de tlf</th>
+                    <th scope="col">Email</th>
                     <th scope="col">Servidor</th>
                     <th scope="col">Bot</th>
                     <th scope="col">Empleados activos</th>
@@ -16,8 +17,9 @@
             <tbody>
                 <ng-container *ngFor="let user of users">
                     <tr *ngIf="user.role==='Empresa'">
-                        <th scope="row">{{user.id}}</th>
-                        <td>{{user.firstName}}</td>
+                        <td><a [routerLink]="['/empresa']"> {{user.firstName}} </a></td>
+                        <td>{{user.phone}}</td>
+                        <td>{{user.email}}</td>
                         <td>
                             <a class="btn btn-dark">
                                 <fa-icon class="text-danger" [icon]="faBull"></fa-icon>
@@ -30,7 +32,7 @@
                                     [ngClass]="getStatus() ? 'text-success ': 'text-danger'"></fa-icon>
                             </a>
                         </td>
-                        <td>3/1</td>
+                        <td>1/3</td>
                         <td>
                             <div class="dropdown">
                                 <button class="btn btn-light dropdown-toggle" type="button" id="config-1"

@@ -33,7 +33,7 @@ const routes: Routes = [
         path: 'empresa',
         component: EmpresaComponent,
         canActivate: [AuthGuard],
-        data: { roles: [Role.Empresa] }
+        data: { roles: [Role.Admin, Role.Empresa] }
     },
     {
         path: 'create',

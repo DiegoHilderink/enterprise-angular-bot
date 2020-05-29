@@ -1,5 +1,5 @@
 <div class="row mt-4">
-    <h3 class="col-lg-12">Datos personales.</h3>
+    <h3 class="col-lg-12 mt-2 mb-2">Datos personales.</h3>
     <div class="col-lg-4">
         <img src="../../assets/unnamed.jpg" class="w-100" alt="No se encuentra imagen">
     </div>
@@ -9,11 +9,12 @@
         <ul class="list-group">
             <li class="list-group-item"><strong> Nombre: </strong>{{userFromApi.firstName}}</li>
             <li class="list-group-item"><strong> Apellidos: </strong> {{userFromApi.lastName}}</li>
+            <li class="list-group-item"><strong> Telefono: </strong> {{userFromApi.phone}}</li>
         </ul>
         <br>
-        <h4>Datos de web</h4>
+        <h4>Datos adiccionales</h4>
         <ul class="list-group">
-            <li class="list-group-item"><strong> Nombre de usuario: </strong>{{userFromApi.username}}</li>
+            <li class="list-group-item"><strong> Email: </strong> {{userFromApi.email}}</li>
             <li class="list-group-item"><strong> Rol: </strong> {{userFromApi.role}}</li>
             <li class="list-group-item"><strong> Empresa: </strong> {{userFromApi.empresa}}</li>
         </ul>

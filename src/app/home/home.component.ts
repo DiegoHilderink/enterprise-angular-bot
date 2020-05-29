@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 
-import { User } from '../_models';
+import { User, Role } from '../_models';
 import { UserService, AuthService } from '../_services';
 
 @Component({ templateUrl: 'home.component.html' })
@@ -12,7 +13,8 @@ export class HomeComponent {
 
     constructor(
         private userService: UserService,
-        private authenticationService: AuthService
+        private authenticationService: AuthService,
+        private router: Router,
     ) {
         this.currentUser = this.authenticationService.currentUserValue;
     }
@@ -23,5 +25,13 @@ export class HomeComponent {
             this.loading = false;
             this.userFromApi = user;
         });
+
+        if (this.currentUser.role === Role.Admin) {
+            this.router.navigate(['/admin']);
+        } else if (this.currentUser.role === Role.Empresa) {
+            this.router.navigate(['/empresa']);
+        } else {
+            this.router.navigate(['/chat-soporte']);
+        }
     }
 }

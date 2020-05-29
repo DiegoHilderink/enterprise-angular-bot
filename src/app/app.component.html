@@ -1,10 +1,13 @@
 <nav class="navbar navbar-light bg-light">
     <div class="navbar-brand">
-        <a href="#" class="text-dark" style="text-decoration: none;">
-            <img src="favicon.ico" width="30" height="30" class="d-inline-block align-top" alt="">
-            Bot Configuration.
-        </a>
-        <a *ngIf="currentUser" [routerLink]="['/user']" class="ml-2"><strong> Usuario</strong>: {{currentUser.firstName}}</a>
+        <img src="favicon.ico" width="30" height="30" class="d-inline-block align-top mr-2" alt="">
+
+        <a href="#" class="text-dark" style="text-decoration: none;"
+            *ngIf="isEmpresa || isUser; else elseBlock">{{currentUser.empresa}}</a>
+        <ng-template #elseBlock> Bot Configuration.</ng-template>
+
+        <a *ngIf="currentUser" [routerLink]="['/user']" class="ml-2"><strong> Usuario</strong>:
+            {{currentUser.firstName}}</a>
     </div>
 
 

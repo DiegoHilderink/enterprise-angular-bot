@@ -6,30 +6,48 @@
         <img src="../../assets/unnamed.jpg" class="w-100" alt="No se encuentra imagen">
     </div>
 
-    <div class="col-lg-8">
-        <div class="form-group">
-            <label for="username">Nombre de usuario</label>
-            <input type="text" class="form-control" id="username" aria-describedby="emailHelp">
-        </div>
-        <div class="form-group">
-            <label for="name">Nombre</label>
-            <input type="text" class="form-control" id="name" aria-describedby="emailHelp">
-        </div>
-        <div class="form-group">
-            <label for="lastname">Apellidos</label>
-            <input type="text" class="form-control" id="lastname" aria-describedby="emailHelp">
-        </div>
-        <div class="form-group">
-            <label for="passwd">Contraseña</label>
-            <input type="password" class="form-control" id="passwd">
-        </div>
-        <div class="form-group">
-            <label for="empresa">Empresa</label>
-            <input type="text" class="form-control" id="empresa" aria-describedby="emailHelp">
-        </div>
+    <div class="col-lg-8" id="accordion"> 
+       
+        <section class="m-2">
+            <a class="btn btn-dark" data-toggle="collapse" href="#datosEmpresa" role="button" aria-expanded="false"
+                aria-controls="collapseExample">
+                Datos de empresa
+            </a>
+            <div class="collapse container mt-2 show" id="datosEmpresa" data-parent="#accordion"> 
+                <div class="form-group">
+                    <label for="name">Email</label>
+                    <input type="email" class="form-control" id="name">
+                </div>
+                <div class="form-group">
+                    <label for="passwd">Contraseña</label>
+                    <input type="password" class="form-control" id="passwd">
+                </div>
+                <div class="form-group" *ngIf="isAdmin">
+                    <label for="empresa">Empresa</label>
+                    <input type="text" class="form-control" id="empresa">
+                </div>
+            </div>
+        </section>
+        <section class="m-2">
+            <a class="btn btn-dark" data-toggle="collapse" href="#datosUsuario" role="button" aria-expanded="false"
+                aria-controls="collapseExample">
+                Datos personales del administrador.
+            </a>
+            <div class="collapse container mt-2" id="datosUsuario" data-parent="#accordion">
+                <div class="form-group">
+                    <label for="name">Nombre completo</label>
+                    <input type="text" class="form-control" id="name">
+                </div>
+                <div class="form-group">
+                    <label for="name">Número de tlf.</label>
+                    <input type="number" class="form-control" id="name">
+                </div>
+                
+            </div>
+        </section>
 
 
-        <button type="submit" class="btn btn-primary">Crear</button>
+        <button type="submit" class="btn btn-primary ml-2">Crear</button>
         <a *ngIf="isAdmin" [routerLink]="['/admin']" class="m-2 btn btn-warning text-light">Atrás</a>
         <a *ngIf="isEmpresa" [routerLink]="['/empresa']" class="m-2 btn btn-warning text-light">Atrás</a>
     </div>
