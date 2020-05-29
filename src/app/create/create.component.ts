@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService, BotService } from '../_services';
-import { Router } from '@angular/router';
+import { AuthService } from '../_services';
 import { User, Role } from '../_models';
 
 @Component({
@@ -9,13 +8,10 @@ import { User, Role } from '../_models';
   styleUrls: ['./create.component.css']
 })
 export class CreateComponent implements OnInit {
-
   currentUser: User;
 
   constructor(
     private authenticationService: AuthService,
-    private bot: BotService,
-    private router: Router,
   ) {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
   }

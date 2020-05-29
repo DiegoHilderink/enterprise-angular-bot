@@ -1,6 +1,8 @@
 import { Component, OnInit, OnChanges, SimpleChange, SimpleChanges } from '@angular/core';
-import { BotService } from "../_services";
-import { faSync } from '@fortawesome/free-solid-svg-icons';
+import { BotService, AuthService } from "../_services";
+import { faSync, faEye } from '@fortawesome/free-solid-svg-icons';
+import { User, Role } from '../_models';
+
 
 //standard messages errors
 const msg = {
@@ -18,9 +20,17 @@ const msg = {
 export class BotStatusComponent implements OnInit, OnChanges {
   log = [];
   faSync = faSync;
+  faEye = faEye;
   btnStatus: string;
+  currentUser: User;
+  line:number = 1;
 
-  constructor(private bot: BotService) { }
+  constructor(
+    private bot: BotService,
+    private authenticationService: AuthService,
+  ) { 
+    this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+  }
 
   ngOnInit(): void {
     this.setLog(this.bot.getLog());
@@ -58,5 +68,23 @@ export class BotStatusComponent implements OnInit, OnChanges {
 
     this.setLog(this.bot.getLog());
     return status;
+  }
+
+  clearConsole(){
+    this.log = [];
+    this.reload()
+  }
+
+  lines(){
+    this.line += 1;
+    return this.line;
+  }
+
+  get isAdmin() {
+    return this.currentUser && this.currentUser.role === Role.Admin;
+  }
+
+  date() {
+    return Date.now()
   }
 }
