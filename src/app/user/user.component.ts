@@ -42,4 +42,8 @@ export class UserComponent implements OnInit {
   get isAdmin() {
     return this.currentUser && this.currentUser.role === Role.Admin;
   }
+
+  get isEmpresa() {
+    return this.currentUser && this.currentUser.role === Role.Empresa;
+  }
 }

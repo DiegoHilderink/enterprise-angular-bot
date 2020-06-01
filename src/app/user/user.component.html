@@ -14,7 +14,8 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <img [src]="logo" class="w-100 mt-2" data-toggle="modal" data-target="#resImg" onerror="this.src='../../assets/unnamed.jpg'">
+                        <img [src]="logo" class="w-100 mt-2" data-toggle="modal" data-target="#resImg"
+                            onerror="this.src='../../assets/unnamed.jpg'">
 
                     </div>
                 </div>
@@ -27,6 +28,9 @@
         <ul class="list-group">
             <li class="list-group-item"><strong> Email: </strong> {{userFromApi.email}}</li>
             <li class="list-group-item"><strong> Passwd: </strong> ***********</li>
+            <li class="list-group-item" *ngIf="userFromApi.dimFiscal !== null"><strong> Domicilio Fiscal: </strong>{{userFromApi.dimFiscal}}</li>
+            <li class="list-group-item" *ngIf="userFromApi.cif !== null"><strong> CIF: </strong>{{userFromApi.cif}}</li>
+
         </ul>
         <br>
         <h4>Datos personales</h4>
