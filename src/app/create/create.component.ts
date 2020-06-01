@@ -9,6 +9,7 @@ import { User, Role } from '../_models';
 })
 export class CreateComponent implements OnInit {
   currentUser: User;
+  empresa: boolean = false;
 
   constructor(
     private authenticationService: AuthService,
@@ -25,5 +26,9 @@ export class CreateComponent implements OnInit {
 
   get isEmpresa() {
     return this.currentUser && this.currentUser.role === Role.Empresa;
+  }
+
+  setEmpresa() {
+    this.empresa = !this.empresa;
   }
 }

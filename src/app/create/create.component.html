@@ -6,14 +6,14 @@
         <img src="../../assets/unnamed.jpg" class="w-100" alt="No se encuentra imagen">
     </div>
 
-    <div class="col-lg-8" id="accordion"> 
-       
+    <div class="col-lg-8" id="accordion">
+
         <section class="m-2">
             <a class="btn btn-dark" data-toggle="collapse" href="#datosEmpresa" role="button" aria-expanded="false"
                 aria-controls="collapseExample">
                 Datos de empresa
             </a>
-            <div class="collapse container mt-2 show" id="datosEmpresa" data-parent="#accordion"> 
+            <div class="collapse container mt-2 show" id="datosEmpresa" data-parent="#accordion">
                 <div class="form-group">
                     <label for="name">Email</label>
                     <input type="email" class="form-control" id="name">
@@ -22,10 +22,31 @@
                     <label for="passwd">Contraseña</label>
                     <input type="password" class="form-control" id="passwd">
                 </div>
-                <div class="form-group" *ngIf="isAdmin">
-                    <label for="empresa">Empresa</label>
-                    <input type="text" class="form-control" id="empresa">
+                <div *ngIf="isAdmin">
+                    <div class="form-check mb-2">
+                        <input type="checkbox" class="form-check-input" id="esempresa" (click)="setEmpresa()"
+                            data-toggle="collapse" data-target="#collapseEmpresa" aria-expanded="false"
+                            aria-controls="collapseEmpresa">
+                        <label class="form-check-label" for="esempresa">Es una empresa</label>
+                    </div>
+                    <div class="collapse" id="collapseEmpresa">
+                        <div class="form-group" *ngIf="empresa">
+                            <label for="empresa">Empresa</label>
+                            <input type="text" class="form-control" id="empresa">
+                        </div>
+
+                        <div class="form-group" *ngIf="empresa">
+                            <label for="empresa">Domicilio Fiscal</label>
+                            <input type="text" class="form-control" id="empresa">
+                        </div>
+
+                        <div class="form-group" *ngIf="empresa">
+                            <label for="empresa">CIF</label>
+                            <input type="text" class="form-control" id="empresa">
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </section>
         <section class="m-2">
@@ -42,7 +63,7 @@
                     <label for="name">Número de tlf.</label>
                     <input type="number" class="form-control" id="name">
                 </div>
-                
+
             </div>
         </section>
 
